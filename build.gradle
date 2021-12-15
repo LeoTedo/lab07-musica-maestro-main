@@ -1,0 +1,35 @@
+plugins {
+    id "application"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'org.jetbrains:annotations:22.0.0'
+}
+
+application.mainClassName = 'it.unimi.di.prog2.musica.Main'
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClassName
+    }
+}
+
+run {
+    enableAssertions = true
+}
+
+test {
+    testLogging {
+        events 'PASSED', 'FAILED'
+    }
+}
+
+javadoc {
+    options.tags = ['pre:a:Preconditions:', 'post:a:Postconditions:']
+    options.addStringOption('Xdoclint:none','-quiet')
+}
